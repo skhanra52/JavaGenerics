@@ -1,16 +1,16 @@
-public class BaseballTeam {
+public class SportsTeam {
 
     private String teamName;
-//    private List<BaseballPlayer> teamMembers = new ArrayList<>();
+//    private List<SportsTeam> teamMembers = new ArrayList<>();
 //    private int totalWins = 0;
 //    private int totalLosses = 0;
 //    private int totalTies = 0;
 
-    public BaseballTeam(String teamName){
+    public SportsTeam(String teamName){
         this.teamName = teamName;
     }
 
-//    public void addTeamMember(BaseballPlayer player){
+//    public void addTeamMember(SportsTeam player){
 //        if(!teamMembers.contains(player)){
 //            teamMembers.add(player);
 //        }
@@ -38,7 +38,7 @@ public class BaseballTeam {
 //        }
 //        return message;
 //    }
-
+//
 //    @Override
 //    public String toString() {
 //        return teamName + "(Ranked "+ ranking() + ")";
