@@ -1,5 +1,6 @@
 import com.skhanra52.genericExample.BaseballPlayer;
 import com.skhanra52.genericExample.FootballPlayer;
+import com.skhanra52.genericExample.Player;
 import com.skhanra52.genericExample.Team;
 
 public class Main {
@@ -40,15 +41,31 @@ public class Main {
 //        team2.setScore(t2_score,t1_score);
 //        System.out.printf("%s %s %s %n", team1, message, team2);
 //    }
-
-    public static <T> void scoreResult(Team<T> team1, int t1_score,
-                                   Team<T> team2, int t2_score){
+//
+//    public static void scoreResult(SportsTeam team1, int t1_score,
+//                                   SportsTeam team2, int t2_score){
+//        String message = team1.setScore(t1_score,t2_score);
+//        team2.setScore(t2_score,t1_score);
+//        System.out.printf("%s %s %s %n", team1, message, team2);
+//    }
+//
+    public static <T extends Player> void scoreResult(Team<T> team1, int t1_score,
+                                                      Team<T> team2, int t2_score){
         String message = team1.setScore(t1_score,t2_score);
         team2.setScore(t2_score,t1_score);
         System.out.printf("%s %s %s %n", team1, message, team2);
     }
 
-//    public static void scoreResult(Team<FootballPlayer> team1, int t1_score,
+//    public static <Player> void scoreResult(Team<BaseballPlayer> team1, int t1_score,
+//                                       Team<BaseballPlayer> team2, int t2_score){
+//        String message = team1.setScore(t1_score,t2_score);
+//        team2.setScore(t2_score,t1_score);
+//        System.out.printf("%s %s %s %n", team1, message, team2);
+//    }
+//
+//
+//
+//    public static <T> void scoreResult(Team<FootballPlayer> team1, int t1_score,
 //                                   Team<FootballPlayer> team2, int t2_score){
 //        String message = team1.setScore(t1_score,t2_score);
 //        team2.setScore(t2_score,t1_score);
