@@ -4,6 +4,8 @@ import com.skhanra52.genericExample.Player;
 import com.skhanra52.genericExample.Team;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -69,6 +71,13 @@ public class Main {
         Arrays.sort(students);
         System.out.println(Arrays.toString(students));
 
+        // ********Example of comparator method compare()
+
+        Student tim = new Student("Tim");
+        Comparator StudentGPAScore = new StudentGPAComparator();
+        Arrays.sort(students,StudentGPAScore);
+        System.out.println(Arrays.toString(students));
+
     }
 
 //    public static void scoreResult(BaseballTeam team1, int t1_score,
@@ -128,28 +137,50 @@ public class Main {
 //
 //    @Override
 //    public int compareTo(Object o) { // Here the argument is Object which has to be cast to
-//        // Student if we want to compare with Student
+//        // Student if we want to compare with Student.
 //        Student other = (Student) o;
 //        return name.compareTo(other.name);
 //    }
 //}
 
 // Here is the properly typed class
+//Natural order means that your object's compareTo method will return a zero if one object is
+//considered equal to another or the equals method returns true, when the compareTo method returns 0.
+//If you had a list of Students who could be uniquely identified
+//by name, then this could be true. It's probably more likely that you'd have
+//a Student id, and use Comparable's compareTo method to sort by student id, for example.
 
 class Student implements Comparable<Student>{
-    private String name;
 
+    private static int LAST_ID = 1000;
+    private static Random random = new Random();
+
+    protected int id ;
+    protected String name;
+    private double gpa;
     public Student(String name){
         this.name = name;
+        id = LAST_ID++;
+        gpa = random.nextDouble(1.0, 4.0);
     }
-
     @Override
     public String toString() {
-        return name;
+        return "%d - %s (%.2f)".formatted(id, name, gpa);
     }
 
     @Override
     public int compareTo(Student o) {
-        return name.compareTo(o.name);
+        return Integer.valueOf(id).compareTo(Integer.valueOf(o.id));
+    }
+}
+
+// This class created to demonstrate Comparator interface
+
+class StudentGPAComparator implements Comparator<Student> {
+
+    // accepting two args and comparing them.
+    @Override
+    public int compare(Student o1, Student o2) {
+        return Integer.valueOf(o1.id).compareTo(Integer.valueOf(o2.id));
     }
 }
