@@ -64,7 +64,7 @@ public class Main {
                 new Student("Vihaan")};
 
         // Below sort() will give the error class Student cannot be cast to class java.lang.Comparable
-        // This is an example of not beeing able to use Arrays.sort() to compare any class or type we want.
+        // This is an example of not being able to use Arrays.sort() to compare any class or type we want.
         // To fix this we have extended Student class with interface Comparable.
         Arrays.sort(students);
         System.out.println(Arrays.toString(students));
@@ -113,8 +113,30 @@ public class Main {
 
 
 // This class has been created to test the comparable interface and how its work.
-// Refer in the main method.
-class Student implements Comparable{
+// Refer in the main method. This is the raw way of using Comparable
+//class Student implements Comparable{
+//    private String name;
+//
+//    public Student(String name){
+//        this.name = name;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return name;
+//    }
+//
+//    @Override
+//    public int compareTo(Object o) { // Here the argument is Object which has to be cast to
+//        // Student if we want to compare with Student
+//        Student other = (Student) o;
+//        return name.compareTo(other.name);
+//    }
+//}
+
+// Here is the properly typed class
+
+class Student implements Comparable<Student>{
     private String name;
 
     public Student(String name){
@@ -127,9 +149,7 @@ class Student implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) { // Here the argument is Object which has to be cast to
-        // Student if we want to compare with Student
-        Student other = (Student) o;
-        return name.compareTo(other.name);
+    public int compareTo(Student o) {
+        return name.compareTo(o.name);
     }
 }
