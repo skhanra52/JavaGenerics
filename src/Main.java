@@ -3,6 +3,8 @@ import com.skhanra52.genericExample.FootballPlayer;
 import com.skhanra52.genericExample.Player;
 import com.skhanra52.genericExample.Team;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
 //        BaseballTeam phillies = new BaseballTeam("Philadelphia Phillis");
@@ -33,6 +35,40 @@ public class Main {
         phillies2.addTeamMember(christian);
         phillies2.addTeamMember(acrobat);
         scoreResult(phillies2,3,astor2,5);
+
+        //--------------Comparable vs Comparator---------------------------------------------------------
+        Integer five = 5;
+        Integer [] others = {0,5,10, -15, 15};
+
+        for(Integer i : others){
+            int val = five.compareTo(i); // we are comparing five with array element
+            System.out.printf("%d %s %d compareTo= %d%n", five,
+                    (val == 0? "==" : (val < 0)? "<":">"), i, val);
+        }
+
+        String banana = "banana";
+        String [] fruits = {"apple", "banana", "pear", "BANANA"};
+        for(String s : fruits){
+            int val = banana.compareTo(s);
+            System.out.printf("%d %s %s compareTo= %d%n", five,
+                    (val == 0? "==" : (val < 0)? "<":">"), s, val);
+        }
+
+        // sorting the fruits here and printing
+        Arrays.sort(fruits);
+        System.out.println(Arrays.toString(fruits));
+
+
+        Student suman = new Student("Suman");
+        Student [] students = {new Student("Geetha"), new Student("vihaan"),
+                new Student("Vihaan")};
+
+        // Below sort() will give the error class Student cannot be cast to class java.lang.Comparable
+        // This is an example of not beeing able to use Arrays.sort() to compare any class or type we want.
+        // To fix this we have extended Student class with interface Comparable.
+        Arrays.sort(students);
+        System.out.println(Arrays.toString(students));
+
     }
 
 //    public static void scoreResult(BaseballTeam team1, int t1_score,
@@ -74,3 +110,26 @@ public class Main {
 }
 
 //record BaseballPlayer(String name, String position){}
+
+
+// This class has been created to test the comparable interface and how its work.
+// Refer in the main method.
+class Student implements Comparable{
+    private String name;
+
+    public Student(String name){
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(Object o) { // Here the argument is Object which has to be cast to
+        // Student if we want to compare with Student
+        Student other = (Student) o;
+        return name.compareTo(other.name);
+    }
+}
