@@ -71,7 +71,7 @@ public class Main {
         Arrays.sort(students);
         System.out.println(Arrays.toString(students));
 
-        // ********Example of comparator method compare()
+        // ********Example of comparator method compare()-------------------------------
 
         Student tim = new Student("Tim");
         Comparator StudentGPAScore = new StudentGPAComparator();
